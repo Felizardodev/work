@@ -1,5 +1,6 @@
 package com.projeto.workshop.Entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,10 +25,9 @@ public class UserEntity implements Serializable {
     private String celular;
     private String senha;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "cliente")
     private List<PedidoEntity> pedidos = new ArrayList<>();
-    public UserEntity(){
-    }
 
     public UserEntity(Long id, String nome, String email, String celular, String senha) {
         super();

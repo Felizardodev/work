@@ -1,5 +1,6 @@
 package com.projeto.workshop.Entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,15 +19,13 @@ public class PedidoEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant momento;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
     private UserEntity cliente;
-
-    public PedidoEntity () {
-
-    }
 
     public PedidoEntity(Long id, Instant momento, UserEntity cliente) {
         this.id = id;
